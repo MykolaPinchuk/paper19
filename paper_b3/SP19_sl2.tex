@@ -1,0 +1,683 @@
+\documentclass{beamer}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{lscape}
+\usepackage{graphicx}% http://ctan.org/pkg/graphicx
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{ upgreek }
+\usepackage{subcaption}
+\usepackage{tabularx} 
+\usepackage{setspace}
+
+
+
+\graphicspath{ {images/} }
+\usetheme{Madrid}
+\definecolor{Gold}{RGB}{218,165,32}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{theorems}[ams style] 
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\makeatletter
+
+\setbeamerfont{footline}{size=\fontsize{6}{8.5}\selectfont}
+
+\defbeamertemplate*{footline}{Dan P theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.14\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.63\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.23\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{1.5em}
+\insertframenumber{} / \inserttotalframenumber\hspace*{4ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+\title{Cross-Industry Dispersion and the Cross-Section of Expected Returns \\ (Pinchuk 2019)}
+
+% A subtitle is optional and this may be deleted
+%\subtitle{Optional Subtitle}
+
+\author{Mykola Pinchuk}
+
+\date{11/05/2019}
+
+\subject{Empirical Asset Pricing}
+
+\AtBeginSubsection[]
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\begin{frame}{Introduction}
+\begin{itemize}
+    \item {The economy has permanently evolving structure.}
+    \item {Accelerated rate of sectoral transformation creates unemployment risk for workers in declining industries.}
+    \item {Many workers posses significant industry-specific skills.}
+    \item {Sectoral shifts create labor income risk for workers with industry-specific skills.}
+    \item {Since employees can not fully hedge labor risk, it should be relevant for asset pricing.}
+    \item {Is the rate of sectoral shifts a state variable?}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Key results}
+\begin{itemize}
+    \item {I use cross-industry dispersion (CID) to measure the rate of sectoral shifts.}
+    \item {CID is cross-sectional standard deviation of the returns of industry portfolios.}
+    \item {Stocks with high sensitivity to CID produce low returns.}
+    \item {This return spread is not explained by common factors.}
+    \item {Unlike CID, within-industry dispersion (WID) is not priced.}
+    \item {Consistent with the hypothesis that CID proxies for labor risk from sectoral shifts, it predicts unemployment.}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Literature}{Related asset pricing literature on idiosyncratic risk}
+\begin{itemize}
+    \item {Theory:}
+    \begin{itemize}
+        \item {Constantinides and Duffie (1996). Heterogeneous-agent model, where cross-sectional variance of income growth is a state variable.}
+    \end{itemize}
+    \item {Empirical papers on idiosyncratic risk:}
+    \begin{itemize}
+        \item {Ang, Hodrick, Xing and Zhang (2006): High sensitivity to VIX is related to low returns.}
+        \item {Herskovic, Kelly, Lustig and Van Nieuwerburgh (2016): High sensitivity to common idiosyncratic volatility (CIV) is related to low returns.}
+        \item {Verousis and Voukelatos (2018): High sensitivty to cross-sectional dispersion (CSD) is related to low returns.}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Literature}{Macroeconomic literature on unemployment and sectoral shifts}
+\begin{itemize}
+    \item {Lilien (1982): Unemployment is driven by two forces: aggregate shocks and sectoral shifts. Most of employment fluctuations in 1970s were driven by sectoral reallocation shocks.}
+    \item {Loungani, Rush and Tave (1990): Sectoral shifts, proxied by the index of stock market dispersion, predict unemployment at annual frequency.}
+    \item {Brainard and Cutler (1993): Sectoral reallocation shocks account for a large fraction of varition in long-term unemployment.}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Relationship to literature}
+\begin{itemize}
+    \item {Bridges the gap between macro and asset pricing literature.}
+    \item {Shows asset pricing implications of unemployment, driven by sectoral shifts.}
+    \item {Provides evidence, broadly consistent with the model of Constantinides and Duffie (1996).}
+    \item {Provides fundamental economic explanation for the cross-sectional returns predictability by CSD (Verousis and Voukelatos 2018). This predictability is driven by cross-industry component of CSD (i.e., CID).}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Data}
+\end{frame}
+
+
+
+\begin{frame}{Cross-Industry Dispersion}
+
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 1: Correlations of changes in CID with changes in other variables}} 
+  \label{} 
+\scriptsize
+\vspace{-0.1cm}
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & VIX & FU & MU & VOL & CIV & CID \\ 
+\hline \\[-1.8ex] 
+VIX & $1$ & $0.40$ & $0.36$ & $0.34$ & $0.50$ & $0.11$ \\ 
+FU & $0.40$ & $1$ & $0.44$ & $0.30$ & $0.39$ & $0.18$ \\ 
+MU & $0.36$ & $0.44$ & $1$ & $0.11$ & $0.24$ & $0.06$ \\ 
+VOL & $0.34$ & $0.30$ & $0.11$ & $1$ & $0.27$ & $0.27$ \\ 
+CIV & $0.50$ & $0.39$ & $0.24$ & $0.27$ & $1$ & $0.22$ \\ 
+CID & $0.11$ & $0.18$ & $0.06$ & $0.27$ & $0.22$ & $1$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{Time series of CID}
+\includegraphics[width=1\textwidth]{paper_b3/F1.png}
+\end{frame}
+
+
+
+\begin{frame}{Estimation of $\beta_{CID}$}
+\end{frame}
+
+
+
+\begin{frame}{Pre-ranking and post-ranking $\beta_{CID}$}
+\includegraphics[width=0.60\textwidth]{paper_b3/Figure2.png}
+\end{frame}
+
+
+\scriptsize
+\begin{frame}{Characteristics of decile portfolios, formed on $\beta_{CID}$}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 2: Characteristics of decile $\beta_{CID}$-sorted vw portfolios}} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{-2pt}} lccccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & D1 & D2 & D3 & D4 & D5 & D6 & D7 & D8 & D9 & D10 & LS \\ 
+\hline \\[-1.8ex] 
+Return & $1.16$ & $0.88$ & $0.85$ & $0.73$ & $0.63$ & $0.66$ & $0.66$ & $0.61$ & $0.54$ & $0.49$ & $$-$0.68$ \\ 
+prebeta & $$-$1.57$ & $$-$0.87$ & $$-$0.54$ & $$-$0.29$ & $$-$0.07$ & $0.14$ & $0.35$ & $0.60$ & $0.95$ & $1.63$ & $3.20$ \\ 
+postbeta & $0.002$ & $0.13$ & $0.17$ & $0.22$ & $0.30$ & $0.32$ & $0.32$ & $0.41$ & $0.44$ & $0.59$ & $0.60$ \\ 
+size & $6.99$ & $7.58$ & $7.91$ & $8.19$ & $8.38$ & $8.61$ & $8.78$ & $8.92$ & $9.04$ & $8.88$ & $1.89$ \\ 
+bm & $$-$0.83$ & $$-$0.76$ & $$-$0.76$ & $$-$0.73$ & $$-$0.73$ & $$-$0.74$ & $$-$0.74$ & $$-$0.77$ & $$-$0.83$ & $$-$0.86$ & $$-$0.03$ \\ 
+op & $0.15$ & $0.16$ & $0.17$ & $0.17$ & $0.17$ & $0.17$ & $0.17$ & $0.17$ & $0.17$ & $0.17$ & $0.02$ \\ 
+inv & $0.29$ & $0.22$ & $0.17$ & $0.16$ & $0.15$ & $0.13$ & $0.14$ & $0.14$ & $0.15$ & $0.17$ & $$-$0.12$ \\ 
+$\beta$ & $1.02$ & $0.95$ & $0.92$ & $0.92$ & $0.92$ & $0.94$ & $0.96$ & $1.00$ & $1.07$ & $1.20$ & $0.18$ \\ 
+BAspr & $0.41$ & $0.33$ & $0.27$ & $0.25$ & $0.23$ & $0.21$ & $0.19$ & $0.19$ & $0.18$ & $0.18$ & $$-$0.23$ \\ 
+mom122 & $0.24$ & $0.17$ & $0.15$ & $0.13$ & $0.12$ & $0.12$ & $0.11$ & $0.11$ & $0.12$ & $0.13$ & $$-$0.11$ \\ 
+vol1m & $2.40$ & $1.94$ & $1.77$ & $1.67$ & $1.62$ & $1.59$ & $1.58$ & $1.63$ & $1.71$ & $2.00$ & $$-$0.39$ \\ 
+vol12m & $2.53$ & $2.04$ & $1.84$ & $1.75$ & $1.69$ & $1.67$ & $1.65$ & $1.71$ & $1.82$ & $2.16$ & $$-$0.38$ \\ 
+$\beta_{VOL}$ & $$-$4.83$ & $$-$3.68$ & $$-$2.84$ & $$-$2.41$ & $$-$2.05$ & $$-$1.85$ & $$-$1.72$ & $$-$1.77$ & $$-$1.52$ & $$-$1.30$ & $3.53$ \\ 
+$\beta_{CIV}$ & $$-$2.38$ & $$-$1.91$ & $$-$1.51$ & $$-$1.18$ & $$-$1.03$ & $$-$0.94$ & $$-$0.80$ & $$-$0.78$ & $$-$0.80$ & $$-$0.39$ & $1.99$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{Returns of decile portfolios, formed on $\beta_{CID}$}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 3: Returns of decile $\beta_{CID}$-sorted portfolios}}
+  \label{} 
+\begin{tabular}{@{\extracolsep{-6pt}} cccccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & D1 & D2 & D3 & D4 & D5 & D6 & D7 & D8 & D9 & D10 & LS \\ 
+\hline \\[-1.8ex] 
+Mean ew & 2.52 & 1.78 & 1.57 & 1.42 & 1.36 & 1.32 & 1.30 & 1.26 & 1.29 & 1.61 & -0.90$^{***}$ \\ 
+T-stat ew & [9.94] & [8.88] & [8.31] & [7.96] & [7.62] & [7.46] & [7.09] & [6.65] & [6.52] & [6.61] & [-5.87] \\ 
+Mean vw & 1.16 & 0.88 & 0.85 & 0.73 & 0.63 & 0.66 & 0.66 & 0.61 & 0.54 & 0.49 & -0.68$^{***}$ \\ 
+T-stat vw & [4.87] & [4.52] & [4.64] & [4.15] & [3.82] & [4.04] & [3.89] & [3.61] & [2.98] & [2.24] & [-3.82] \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: 10/14
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 4: Abnormal returns of decile $\beta_{CID}$-sorted vw portfolios}} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{0pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+LS & -0.68$^{***}$ & -0.65$^{***}$ & -0.74$^{***}$ & -0.53$^{***}$ & -0.79$^{***}$ & -0.48$^{***}$ \\ 
+T-stat & [-3.82] & [-3.63] & [-4.45] & [-3.22] & [-4.62] & [-2.85] \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{Factor loadings of decile portfolios, formed on $\beta_{CID}$}
+\vspace{-0.25cm}
+\begin{table}[!htbp] \centering 
+  \label{} 
+\begin{tabular}{@{\extracolsep{0pt}} ccccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Ntile & Ret & Alpha & MKT & HML & SMB & RMW & CMA & adjR2 \\ 
+\hline \\[-1.8ex] 
+1 & 1.16 & 0.71 & 1.03 & -0.14 & 0.44 & -0.20 & -0.30 & 0.82 \\ 
+ & [ 4.87] & [ 6.70] & [ 39.08] & [ -2.70] & [ 12.05] & [ -3.99] & [ -4.01] &  \\ 
+2 & 0.88 & 0.34 & 0.97 & 0.00 & 0.24 & 0.09 & -0.12 & 0.83 \\ 
+ & [ 4.52] & [ 3.95] & [ 46.02] & [ 0.06] & [ 8.29] & [ 2.17] & [ -2.05] &  \\ 
+3 & 0.85 & 0.36 & 0.94 & -0.05 & 0.15 & 0.01 & -0.04 & 0.83 \\ 
+ & [ 4.64] & [ 4.55] & [ 47.65] & [ -1.30] & [ 5.34] & [ 0.30] & [ -0.71] &  \\ 
+4 & 0.73 & 0.15 & 0.96 & 0.00 & 0.10 & 0.15 & 0.06 & 0.86 \\ 
+ & [ 4.15] & [ 2.23] & [ 55.99] & [ 0.06] & [ 4.12] & [ 4.44] & [ 1.29] &  \\ 
+5 & 0.63 & 0.03 & 0.93 & 0.03 & 0.09 & 0.16 & 0.18 & 0.88 \\ 
+ & [ 3.82] & [ 0.42] & [ 62.47] & [ 0.99] & [ 4.12] & [ 5.58] & [ 4.22] &  \\ 
+6 & 0.66 & 0.11 & 0.93 & 0.02 & 0.00 & 0.14 & 0.11 & 0.88 \\ 
+ & [ 4.04] & [ 1.82] & [ 63.52] & [ 0.66] & [ 0.01] & [ 4.84] & [ 2.61] &  \\ 
+7 & 0.66 & 0.09 & 0.99 & 0.05 & -0.03 & 0.10 & 0.11 & 0.90 \\ 
+ & [ 3.89] & [ 1.57] & [ 70.80] & [ 2.02] & [ -1.73] & [ 3.52] & [ 2.71] &  \\ 
+8 & 0.61 & -0.01 & 1.01 & 0.15 & -0.08 & 0.18 & 0.10 & 0.91 \\ 
+ & [ 3.61] & [ -0.22] & [ 76.79] & [ 5.83] & [ -4.19] & [ 7.00] & [ 2.59] &  \\ 
+9 & 0.54 & -0.03 & 1.03 & 0.10 & -0.11 & 0.03 & 0.06 & 0.87 \\ 
+ & [ 2.98] & [ -0.37] & [ 61.80] & [ 3.20] & [ -4.58] & [ 0.88] & [ 1.17] &  \\ 
+10 & 0.49 & -0.08 & 1.15 & 0.19 & -0.05 & -0.15 & -0.14 & 0.82 \\ 
+ & [ 2.24] & [ -0.80] & [ 48.49] & [ 4.05] & [ -1.60] & [ -3.16] & [ -2.05] &  \\ 
+LS & -0.68 & -0.79 & 0.12 & 0.32 & -0.49 & 0.06 & 0.16 & 0.16 \\ 
+ & [ -3.82] & [ -4.62] & [ 2.93] & [ 3.96] & [ -8.41] & [ 0.71] & [ 1.35] &  \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+{\renewcommand{\arraystretch}{0.58}
+\begin{frame}{Fama-MacBeth: Table 7}
+\vspace{-0.4cm}
+\begin{table}[!htbp] \centering 
+\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.0ex] 
+ & \multicolumn{6}{c}{\textit{Dependent variable: Return}} \\ 
+\cline{2-7} 
+\\[-1.0ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
+\hline \\[-1.0ex] 
+ $\beta_{CID}$ & $-$0.33$^{***}$ & $-$0.24$^{***}$ & $-$0.19$^{***}$ & $-$0.23$^{***}$ & $-$0.38$^{***}$ & $-$0.24$^{*}$ \\ 
+  & [$-$4.37] & [$-$3.86] & [$-$2.72] & [$-$3.05] & [$-$3.69] & [$-$1.82] \\ 
+  & & & & & & \\ 
+ $\beta$ &  & 0.83$^{***}$ & 1.21$^{***}$ & 0.96$^{**}$ & 0.44 & 0.52 \\ 
+  &  & [4.27] & [2.93] & [2.07] & [0.68] & [0.60] \\ 
+  & & & & & & \\ 
+ size &  &  & $-$0.06$^{*}$ & $-$0.05 & $-$0.05 & $-$0.06 \\ 
+  &  &  & [$-$1.65] & [$-$1.28] & [$-$0.76] & [$-$0.80] \\ 
+  & & & & & & \\ 
+ logbm &  &  & 0.02 & 0.09 & 0.16 & 0.18 \\ 
+  &  &  & [0.14] & [0.52] & [0.61] & [0.52] \\ 
+  & & & & & & \\ 
+ Momentum &  &  &  & 1.23$^{*}$ & 1.21 & 1.49 \\ 
+  &  &  &  & [1.79] & [1.31] & [1.14] \\ 
+  & & & & & & \\ 
+ op &  &  &  &  & 2.85 & 1.79 \\ 
+  &  &  &  &  & [1.49] & [0.75] \\ 
+  & & & & & & \\ 
+ inv &  &  &  &  & $-$0.44 & 1.28 \\ 
+  &  &  &  &  & [$-$0.47] & [1.17] \\ 
+  & & & & & & \\ 
+ $\beta_{VOL}$ &  &  &  &  &  & 0.05 \\ 
+  &  &  &  &  &  & [1.18] \\ 
+  & & & & & & \\ 
+ Constant & 0.68$^{***}$ & $-$0.08 & $-$0.03 & $-$0.01 & $-$0.001 & $-$0.01 \\ 
+  & [4.13] & [$-$1.27] & [$-$0.61] & [$-$0.42] & [$-$0.03] & [$-$0.55] \\ 
+  & & & & & & \\ 
+\hline \\[-1.0ex] 
+Observations & 7183 & 7183 & 7183 & 7183 & 7183 & 7183 \\ 
+Adjusted R$^{2}$ & 0.44 & 0.62 & 0.77 & 0.82 & 0.90 & 0.93 \\ 
+\hline 
+\end{tabular} 
+\end{table}
+\end{frame}
+}
+
+
+
+\begin{frame}{CID vs WID}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 8: Abnormal returns of 5x5 portfolios, double-sorted on within-industry dispersion $\beta_{WID}$ and $\beta_{CID}$}} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S WID & 0.16 & 0.25 & 0.13 & 0.00 & -0.12 & -0.16 \\ 
+T-stat & [ 1.07] & [ 1.63] & [ 0.84] & [ 0.03] & [ -0.83] & [ -1.04] \\ 
+L/S CID & 0.32$^{**}$ & 0.28$^{*}$ & 0.37$^{***}$ & 0.32$^{**}$ & 0.53$^{***}$ & 0.37$^{***}$ \\ 
+T-stat & [ 2.32] & [ 1.92] & [ 2.68] & [ 2.25] & [ 3.81] & [ 2.60] \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{CID and volatility measures}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 10: Abnormal returns of 5x5 portfolios, double-sorted on $\beta_{CID}$ and other variables}}
+    \begin{flushleft}
+    {\medskip \scriptsize
+Market volatility is a standard deviation of monthly value-weighted market returns over the last 24 months.}
+    \medskip
+    \end{flushleft}
+\begin{tabularx}{\linewidth}{p{1.5cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}}
+    \toprule
+    \multicolumn{7}{l}{\textbf{Panel A: Market volatility vs CID}} \\
+    \midrule 
+\\[-2.5ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S VOL & 0.31$^{**}$ & 0.18 & 0.25$^{**}$ & 0.29$^{**}$ & 0.49$^{***}$ & 0.47$^{***}$ \\ 
+T-stat & [ 2.23] & [ 1.37] & [ 1.96] & [ 2.18] & [ 3.85] & [ 3.63] \\ 
+L/S CID & 0.40$^{***}$ & 0.42$^{***}$ & 0.45$^{***}$ & 0.32$^{***}$ & 0.48$^{***}$ & 0.30$^{**}$ \\ 
+T-stat & [ 3.32] & [ 3.46] & [ 3.85] & [ 2.73] & [ 4.02] & [ 2.49] \\ 
+\hline \\[-1.8ex] 
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{p{1.5cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}}
+    \toprule
+    \multicolumn{7}{l}{\textbf{Panel E: VIX vs CID}} \\
+    \midrule  
+\\[-2.5ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S VIX & 0.25 & -0.13 & -0.09 & 0.05 & 0.19 & 0.28 \\ 
+T-stat & [ 1.08] & [ -0.68] & [ -0.49] & [ 0.30] & [ 1.10] & [ 1.61] \\ 
+L/S CID & 0.23 & 0.23 & 0.38$^{**}$ & 0.21 & 0.30 & 0.15 \\ 
+T-stat & [ 1.19] & [ 1.16] & [ 2.10] & [ 1.21] & [ 1.61] & [ 0.85] \\ 
+\hline \\[-1.8ex] 
+\end{tabularx} 
+\end{table} 
+\end{frame}
+
+
+
+\begin{frame}{CID and uncertainty measures}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 10: Abnormal returns of 5x5 portfolios, double-sorted on $\beta_{CID}$ and other variables}}
+  \label{} 
+  \begin{flushleft}
+    {\medskip
+    \scriptsize
+ MU and FU are macroeconomic and financial uncertainty indices from Ludvigson et al. (2015).}
+    \medskip
+    \end{flushleft}
+\begin{tabularx}{\linewidth}{p{2cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}}
+    \toprule
+    \multicolumn{7}{l}{\textbf{Panel C: Macroeconomic uncertainty (Ludvigson 2015) vs CID}} \\
+    \midrule  
+\\[-2.5ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S MU & 0.05 & -0.07 & -0.03 & 0.07 & 0.19 & 0.19 \\ 
+T-stat & [ 0.33] & [ -0.50] & [ -0.20] & [ 0.55] & [ 1.42] & [ 1.44] \\ 
+L/S CID & 0.49$^{***}$ & 0.49$^{***}$ & 0.53$^{***}$ & 0.35$^{***}$ & 0.54$^{***}$ & 0.32$^{**}$ \\ 
+T-stat & [ 3.77] & [ 3.75] & [ 4.20] & [ 2.83] & [ 4.21] & [ 2.56] \\ 
+\hline \\[-1.8ex] 
+\end{tabularx} 
+
+\begin{tabularx}{\linewidth}{p{2cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm}}
+    \toprule
+    \multicolumn{7}{l}{\textbf{Panel D: Financial uncertainty (Ludvigson 2015) vs CID}} \\
+    \midrule 
+\\[-2.5ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S FU & 0.25$^{*}$ & 0.15 & 0.01 & -0.04 & -0.10 & -0.07 \\ 
+T-stat & [ 1.86] & [ 1.15] & [ 0.07] & [ -0.30] & [ -0.77] & [ -0.52] \\ 
+L/S CID & 0.39$^{***}$ & 0.40$^{***}$ & 0.44$^{***}$ & 0.31$^{***}$ & 0.45$^{***}$ & 0.28$^{**}$ \\ 
+T-stat & [ 3.24] & [ 3.26] & [ 3.74] & [ 2.67] & [ 3.70] & [ 2.33] \\  
+\hline \\[-1.8ex] 
+\end{tabularx} 
+\end{table} 
+\end{frame}
+
+
+
+\begin{frame}{CID and CIV}
+
+\end{frame}
+
+
+
+\begin{frame}{CID and CIV: doublesorts}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 11: Abnormal returns of 5x5 portfolios, double-sorted on $\beta_{CID}$ and $\beta_{CIV}$}}
+  \label{} 
+  \begin{flushleft}
+    {\medskip \scriptsize
+ The table reports abnormal monthly returns of long-short value-weighted portfolios, formed from independent 5 by 5 double sorts on $\beta_{CID}$ and $\beta_{CIV}$. CIV is common idiosyncratic volatility from Herskovic, Kelly, Lustig and Van Nieuwerburgh (2016). }
+    \medskip
+    \end{flushleft}
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S CIV & 0.33$^{***}$ & 0.27$^{**}$ & 0.17 & 0.21$^{*}$ & 0.08 & 0.13 \\ 
+T-stat & [ 2.78] & [ 2.28] & [ 1.43] & [ 1.78] & [ 0.68] & [ 1.07] \\ 
+L/S CID & 0.37$^{***}$ & 0.39$^{***}$ & 0.42$^{***}$ & 0.26$^{**}$ & 0.44$^{***}$ & 0.23$^{**}$ \\ 
+T-stat & [ 3.06] & [ 3.22] & [ 3.64] & [ 2.27] & [ 3.71] & [ 1.99] \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+\scripttesize
+{\renewcommand{\arraystretch}{0.56}
+\begin{frame}{CID and CIV: Spanning tests between the two factors}
+\vspace{-0.3cm}
+\begin{table}[!htbp] \centering 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1ex] & \multicolumn{2}{c}{CID factor} & \multicolumn{2}{c}{CIV factor} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1ex] 
+ MKT & 0.110$^{**}$ & 0.151$^{***}$ & $-$0.117$^{***}$ & $-$0.154$^{***}$ \\ 
+  & [2.562] & [3.710] & [$-$2.727] & [$-$3.827] \\ 
+  & & & & \\ 
+ SMB & $-$0.500$^{***}$ & $-$0.376$^{***}$ & $-$0.359$^{***}$ & $-$0.187$^{***}$ \\ 
+  & [$-$8.192] & [$-$6.364] & [$-$5.909] & [$-$3.105] \\ 
+  & & & & \\ 
+ HML & 0.156$^{*}$ & 0.138$^{*}$ & 0.054 & 0.0004 \\ 
+  & [1.813] & [1.697] & [0.631] & [0.004] \\ 
+  & & & & \\ 
+ RMW & 0.080 & 0.177$^{**}$ & $-$0.277$^{***}$ & $-$0.305$^{***}$ \\ 
+  & [0.951] & [2.215] & [$-$3.319] & [$-$3.882] \\ 
+  & & & & \\ 
+ CMA & 0.401$^{***}$ & 0.399$^{***}$ & 0.006 & $-$0.131 \\ 
+  & [3.144] & [3.329] & [0.051] & [$-$1.095] \\ 
+  & & & & \\ 
+ Mom & $-$0.274$^{***}$ & $-$0.284$^{***}$ & 0.029 & 0.123$^{***}$ \\ 
+  & [$-$6.610] & [$-$7.300] & [0.716] & [3.087] \\ 
+  & & & & \\ 
+ CIV factor &  & 0.348$^{***}$ &  &  \\ 
+  &  & [9.009] &  &  \\ 
+  & & & & \\ 
+ CID factor &  &  &  & 0.344$^{***}$ \\ 
+  &  &  &  & [9.009] \\ 
+  & & & & \\ 
+ Constant & $-$0.652$^{***}$ & $-$0.503$^{***}$ & $-$0.427$^{**}$ & $-$0.203 \\ 
+  & [$-$3.656] & [$-$2.991] & [$-$2.411] & [$-$1.207] \\ 
+  & & & & \\ 
+\hline \\[-1ex] 
+Observations & 605 & 605 & 605 & 605 \\ 
+Adjusted R$^{2}$ & 0.222 & 0.314 & 0.078 & 0.187 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+}
+\footnotesize
+
+
+\begin{frame}{Other industry classifications}
+\includegraphics[width=0.64\textwidth]{paper_b3/Figure4.png}
+\end{frame}
+
+
+
+\begin{frame}{CID vs WID using FF5 industry classification}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 16: Abnormal returns of 5x5 portfolios, double-sorted on within-industry dispersion $\beta_{WID}$ and $\beta_{CID}$} using FF5 industry classification} 
+  \label{} 
+  \begin{flushleft}
+    {\medskip\scriptsize
+ The table reports abnormal monthly returns of long-short value-weighted portfolios, formed from independent 5 by 5 double sorts on $\beta_{WID}$ and $\beta_{CID}$. WID (within-industry dispersion) is a mean absolute deviation of returns of the stocks within each industry, averaged across 5 industries.}
+    \medskip
+    \end{flushleft}
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & Ret & $\alpha_{CAPM}$ & $\alpha_{FF3}$ & $\alpha_{Carhart}$ & $\alpha_{FF5}$ & $\alpha_{FF5+UMD+STR}$ \\ 
+\hline \\[-1.8ex] 
+L/S WID & 0.22^{*} & 0.30^{***} & 0.24^{**} & 0.13 & 0.06 & -0.03 \\ 
+T-stat & [ 1.92] & [ 2.69] & [ 2.16] & [ 1.18] & [ 0.56] & [ -0.31] \\ 
+L/S CID & 0.20 & 0.18 & 0.27^{**} & 0.21 & 0.39^{***} & 0.21 \\ 
+T-stat & [ 1.48] & [ 1.38] & [ 2.10] & [ 1.57] & [ 2.97] & [ 1.61] \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{Economic channel: labor risk}
+\end{frame}
+
+
+
+\begin{frame}{Sectoral shifts hypothesis}
+\end{frame}
+
+
+\scriptsize
+{\renewcommand{\arraystretch}{0.8}
+\begin{frame}{Unemployment predictability}
+\begin{table}[!htbp] \centering 
+  \caption*{\textbf{Table 15: Predictive regressions for unemployment}} 
+\begin{tabular}{@{\extracolsep{-2pt}}lcccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.5ex] 
+ & \multicolumn{6}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-7} \\[-1ex]
+ & \multicolumn{2}{c}{Unemployment growth} & \multicolumn{2}{c}{LT Unemployment growth} & \multicolumn{2}{c}{ST Unemployment growth} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
+\hline \\[-1ex] 
+ $CID_{t-1}$ & 3.70$^{***}$ & 3.30$^{**}$ & 2.29$^{**}$ & 1.95$^{**}$ & 0.25 & 0.22 \\ 
+  & [2.72] & [2.53] & [2.03] & [2.04] & [0.57] & [0.54] \\ 
+  & & & & & & \\ 
+ $Mkt_{t-1}$ &  & $-$0.88$^{***}$ &  & $-$0.03 &  & $-$0.41$^{***}$ \\ 
+  &  & [$-$2.96] &  & [$-$0.17] &  & [$-$4.38] \\ 
+  & & & & & & \\ 
+ $Vol_{t-1}$ &  & 0.20$^{**}$ &  & 0.10$^{**}$ &  & 0.05$^{**}$ \\ 
+  &  & [2.45] &  & [2.15] &  & [1.96] \\ 
+  & & & & & & \\ 
+ Constant & $-$0.0002 & $-$0.0004 & 0.003 & 0.003 & $-$0.003 & $-$0.003 \\ 
+  & [$-$0.004] & [$-$0.01] & [0.09] & [0.11] & [$-$0.35] & [$-$0.40] \\ 
+  & & & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 284 & 284 & 284 & 284 & 284 & 284 \\ 
+R$^{2}$ & 0.03 & 0.11 & 0.03 & 0.06 & 0.001 & 0.11 \\ 
+Adjusted R$^{2}$ & 0.02 & 0.10 & 0.03 & 0.05 & $-$0.002 & 0.10 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+\end{frame}
+}
+
+
+
+\begin{frame}{Future work}
+\end{frame}
+
+
+
+\begin{frame}{Conclusion}
+\begin{itemize}
+    \item {}
+    \item {}
+    \item {}
+    \item {}
+    \item {}
+    \item {}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Appendix: $\beta_{CID}$ of FF49 industries}
+\end{frame}
+
+
+
+\begin{frame}{Appendix: Fama-MacBeth across stocks}
+\end{frame}
+
+
+
+\begin{frame}{Appendix: CID, constructed from abnormal industry returns}
+\end{frame}
+
+
+
+\begin{frame}{Appendix: CID vs CIV: Fama-MacBeth across $\beta_{CID}$-sorted portfolios}
+\end{frame}
+
+
+
+\begin{frame}{Appendix: CID vs CIV: Fama-MacBeth across $\beta_{CIV}$-sorted portfolios}
+\end{frame}
+
+
+
+\begin{frame}{2x3 Doublesort on $\beta_{CID}$ and size}
+\end{frame}
+
+
+
+\begin{frame}
+\end{frame}
+
+
+
+\begin{frame}
+\end{frame}
+
+
+
+\begin{frame}
+\end{frame}
+
+
+
+\begin{frame}
+\end{frame}
+
+
+
+\begin{frame}
+\end{frame}
+
+
+
+\begin{frame}
+\includegraphics[width=1\textwidth]{table_spread.png}
+\end{frame}
+
+
+
+
+\end{document}
+
